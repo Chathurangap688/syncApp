@@ -1,6 +1,6 @@
 {
-  "name": "SyncApp",
-  "app_id": "",
+  "name": "MyIonicProject",
+  "app_id": "8780a170",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
