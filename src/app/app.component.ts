@@ -17,10 +17,10 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+  @ViewChild(Nav)  nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
+  public rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any,icon:string}>;
 
  

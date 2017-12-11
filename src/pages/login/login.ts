@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {HelloIonicPage} from '../hello-ionic/hello-ionic';
-import {CreateAcountPage } from '../create-acount/create-acount';
+import { HelloIonicPage } from '../hello-ionic/hello-ionic';
+import { CreateAcountPage } from '../create-acount/create-acount';
 import { HTTP } from '@ionic-native/http';
 import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http';
+import { errorHandler } from '@angular/platform-browser/src/browser';
+import { HttpErrorResponse } from '@angular/common/http/src/response';
+import {AuthService} from '../../providers/auth-service/auth-service';
+
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -19,38 +25,40 @@ import { Storage } from '@ionic/storage';
 export class LoginPage {
   username = '';
   password = '';
+  data = {};
+  errmsg='';
+
+
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,private storage: Storage,private http: HTTP) {
+
+  constructor(public navCtrl: NavController,private authService:AuthService, public navParams: NavParams, private storage: Storage, private httpI: HTTP, private http: HttpClient) {
   }
-
-  login(age){
-   
-    if( this.username!=''){
-     
-
-
-    this.http.post('http://localhost/227/', 
-    { 
-      cardToken : "token",
-      amount: 500
-    }, 
-    {
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then(data => {
-      console.log(data.data);
-    }).catch(error => {
-      console.log(error.status);
-    });
-  }
-  }
+  
+  
+    logNew(){
+       this.storage.get('errorMassege').then(msg=>{
+         this.errmsg=msg;
+       });
+       this.authService.login(this.username,this.password);
+       this.storage.get('uname').then(val=>{
+         if(val!=null){
+          this.navCtrl.setRoot(HelloIonicPage);
+         }
+        
+       });
+         
+       
+        
+      
+    }
+  
 
 
-  createAcount(){
+  createAcount() {
     this.navCtrl.setRoot(CreateAcountPage);
   }
-ionViewDidLoad() {
-    
-}
+  ionViewDidLoad() {
 
+  }
+  
 }

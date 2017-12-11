@@ -7,44 +7,37 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Create Acount</ion-title>
+    <ion-title>Create Account</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-list>
-        <ion-item>
-            <ion-label stacked>Full Name</ion-label>
-            <ion-input type="text" [(ngModel)]="fullname"></ion-input>
-          </ion-item>
+  <ion-list>
     
-        <ion-item>
-            <ion-label stacked>User Name</ion-label>
-            <ion-input type="text" [(ngModel)]="username"></ion-input>
-          </ion-item>
-    
-        <ion-item>
-            <ion-label stacked>Password</ion-label>
-            <ion-input type="password" [(ngModel)]="password" v></ion-input>
-            
-         </ion-item>
-         <ion-item>
-            <ion-label stacked>Password again</ion-label>
-            <ion-input type="password" [(ngModel)]="password2" v></ion-input>
-         
-         </ion-item>
-         <ion-item>
-            <ion-label stacked>I read and accept the licence of this app</ion-label>
-            <ion-checkbox></ion-checkbox>
-         
-         </ion-item>
-         <ion-item>
-          <button ion-button color="primary"  (click)="cancel()">Create</button>
-          <button ion-button color="dark"  (click)="cancel()">Cancel</button>
-         </ion-item>
-    </ion-list>
-
-
+       <ion-item>
+         <ion-label stacked>First Name</ion-label>
+         <ion-input type="text" [(ngModel)]="userData.fname"></ion-input>
+       </ion-item>
+ 
+       <ion-item>
+         <ion-label stacked>Last Name</ion-label>
+         <ion-input type="text" [(ngModel)]="userData.lname"></ion-input>
+       </ion-item>
+ 
+       <ion-item>
+         <ion-label stacked>Username</ion-label>
+         <ion-input type="text" [(ngModel)]="userData.username"></ion-input>
+       </ion-item>
+ 
+       <ion-item>
+         <ion-label stacked>Password</ion-label>
+         <ion-input type="password" [(ngModel)]="userData.password"></ion-input>
+       </ion-item>
+ 
+       <button ion-button full color="success" (click)="signup()">Sign up</button>
+       <a href="#" (click)="login()">Login Page</a>
+     </ion-list>
+     <ion-label >{{errmsg}}</ion-label>
 </ion-content>

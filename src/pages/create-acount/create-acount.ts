@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import{LoginPage} from '../login/login'
+import { AuthService } from '../../providers/auth-service/auth-service';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the CreateAcountPage page.
  *
@@ -15,14 +18,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CreateAcountPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  
+  errmsg='no err';
+  responseData : any;
+  userData = {"username": "","password": "", "fname": "","lname": ""};
+
+  constructor(public navCtrl: NavController ,private authService:AuthService,private storage:Storage) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CreateAcountPage');
+  signup(){
+    this.storage.get('errorMassege').then(msg=>{
+      this.errmsg=msg;
+    });
+
+ this.authService.singUp(this.userData.fname,this.userData.lname,this.userData.username,this.userData.password);
+ this.storage.get('status').then(msg=>{
+  if(msg=='ok'){
+    this.navCtrl.setRoot(LoginPage);
   }
-  cancel(){
-    window.location.reload();
+  });
+
+  }
+
+  login(){
+    this.navCtrl.setRoot(LoginPage);
+    console.log("restart");
   }
 
 }

@@ -7,9 +7,9 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { SettingPage } from '../pages/setting/setting';
-import {LoginPage} from '../pages/login/login'
-import {CreateAcountPage } from '../pages/create-acount/create-acount';
-import {BrowserPage} from '../pages/browser/browser'
+import { LoginPage } from '../pages/login/login'
+import { CreateAcountPage } from '../pages/create-acount/create-acount';
+import { BrowserPage } from '../pages/browser/browser'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,7 +21,9 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { File } from '@ionic-native/file';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { HTTP } from '@ionic-native/http';
-
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../providers/auth-service/auth-service';
+//import { Http ,Headers} from '@angular/http';
 @NgModule({
   declarations: [
     MyApp,
@@ -37,7 +39,8 @@ import { HTTP } from '@ionic-native/http';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -58,7 +61,9 @@ import { HTTP } from '@ionic-native/http';
     PhotoLibrary,
     ImagePicker,
     HTTP,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    //Http ,Headers,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+     AuthService
   ]
 })
-export class AppModule {}
+export class AppModule { }
